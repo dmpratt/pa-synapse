@@ -1,0 +1,10 @@
+{
+	"name": "synapse-ws-sql--privateanalytics",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/e62b14ef-8ad7-4fe1-b673-dbe6c34a50dc/resourceGroups/private-analytics/providers/Microsoft.Synapse/workspaces/privateanalytics",
+		"groupId": "sql",
+		"fqdns": [
+			"privateanalytics.e500fe36-c1e6-4ada-932d-01fd6d4180de.sql.azuresynapse.net"
+		]
+	}
+}

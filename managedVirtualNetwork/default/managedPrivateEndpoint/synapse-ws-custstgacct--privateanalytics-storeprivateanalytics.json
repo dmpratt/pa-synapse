@@ -1,0 +1,10 @@
+{
+	"name": "synapse-ws-custstgacct--privateanalytics-storeprivateanalytics",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/e62b14ef-8ad7-4fe1-b673-dbe6c34a50dc/resourceGroups/private-analytics/providers/Microsoft.Storage/storageAccounts/storeprivateanalytics",
+		"groupId": "dfs",
+		"fqdns": [
+			"storeprivateanalytics.dfs.core.windows.net"
+		]
+	}
+}

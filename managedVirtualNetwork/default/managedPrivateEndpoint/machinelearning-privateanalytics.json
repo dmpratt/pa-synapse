@@ -1,0 +1,11 @@
+{
+	"name": "machinelearning-privateanalytics",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/e62b14ef-8ad7-4fe1-b673-dbe6c34a50dc/resourceGroups/private-analytics/providers/Microsoft.MachineLearningServices/workspaces/aml-private-analytics",
+		"groupId": "amlworkspace",
+		"fqdns": [
+			"0c7f3cff-07a6-4c34-88d3-ea574b0b3f5c.workspace.northcentralus.api.azureml.ms",
+			"0c7f3cff-07a6-4c34-88d3-ea574b0b3f5c.workspace.northcentralus.cert.api.azureml.ms"
+		]
+	}
+}
