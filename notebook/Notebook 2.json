@@ -17,7 +17,7 @@
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "4",
-				"spark.autotune.trackingId": "6e62cb4c-280e-4b00-b01b-902a129b2fb0"
+				"spark.autotune.trackingId": "8e97c336-84d6-4585-954a-00903ff442fa"
 			}
 		},
 		"metadata": {
@@ -69,9 +69,28 @@
 			{
 				"cell_type": "code",
 				"source": [
-					"print(f\"{ws.name} again\")"
+					"from notebookutils.mssparkutils import azureML\n",
+					"from azureml.core import Workspace, Model\n",
+					"import joblib\n",
+					"\n",
+					"# getWorkspace() takes the linked service name,\n",
+					"# not the Azure Machine Learning workspace name.\n",
+					"ws = azureML.getWorkspace(\"aml_private_analytics\")\n",
+					"#ws = Workspace.from_config()\n",
+					"print(ws.name)\n",
+					"model_name = \"LeadScore\"\n",
+					"\n",
+					"model_obj = Model(ws, model_name)\n",
+					"\n",
+					"for model in Model.list(ws):\n",
+					"    print(model.name, model.version)\n",
+					"\n",
+					"model_path = Model.get_model_path(model_name= \"LeadScore\", version=10, _workspace=ws)\n",
+					"print(model_path)\n",
+					"modelObj = joblib.load(f\"{model_path}/lead_score_000010.model\")\n",
+					""
 				],
-				"execution_count": 4
+				"execution_count": 12
 			}
 		]
 	}
