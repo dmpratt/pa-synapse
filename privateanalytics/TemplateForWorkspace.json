@@ -151,11 +151,14 @@
 						"spark.dynamicAllocation.enabled": "true",
 						"spark.dynamicAllocation.minExecutors": "1",
 						"spark.dynamicAllocation.maxExecutors": "4",
-						"spark.autotune.trackingId": "0483c8ef-3185-4cd0-9330-14a9b966dbd2"
+						"spark.autotune.trackingId": "2f45333c-759a-4a36-802f-4057da6413b4"
 					}
 				},
 				"metadata": {
 					"saveOutput": true,
+					"synapse_widget": {
+						"version": "0.1"
+					},
 					"enableDebugMode": false,
 					"kernelspec": {
 						"name": "synapse_pyspark",
@@ -171,20 +174,20 @@
 						"endpoint": "https://privateanalytics.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/Small33",
 						"auth": {
 							"type": "AAD",
-							"authResource": "https://dev.azuresynapse.net"
+							"authResource": "https://dev.azuresynapse.net",
+							"authHeader": null
 						},
 						"sparkVersion": "3.3",
 						"nodeCount": 10,
 						"cores": 8,
 						"memory": 56,
-						"automaticScaleJobs": true
+						"extraHeader": null
 					},
 					"sessionKeepAliveTimeout": 30
 				},
 				"cells": [
 					{
 						"cell_type": "code",
-						"metadata": {},
 						"source": [
 							"from notebookutils.mssparkutils import azureML\n",
 							"\n",
@@ -194,8 +197,7 @@
 							"\n",
 							"print(ws.name)"
 						],
-						"outputs": [],
-						"execution_count": null
+						"outputs": []
 					}
 				]
 			},
@@ -222,7 +224,7 @@
 						"spark.dynamicAllocation.enabled": "true",
 						"spark.dynamicAllocation.minExecutors": "1",
 						"spark.dynamicAllocation.maxExecutors": "4",
-						"spark.autotune.trackingId": "e8e260b9-10e0-43e9-bd91-cbc523c15313"
+						"spark.autotune.trackingId": "27108791-b644-4d6d-bd62-cf37e5876acb"
 					}
 				},
 				"metadata": {
@@ -267,10 +269,10 @@
 							}
 						},
 						"source": [
-							"%run \"Notebook 1\""
+							"%run \"/Test/TestNotebook\""
 						],
 						"outputs": [],
-						"execution_count": 3
+						"execution_count": 5
 					},
 					{
 						"cell_type": "code",
@@ -280,6 +282,79 @@
 						],
 						"outputs": [],
 						"execution_count": 4
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/TestNotebook')]",
+			"type": "Microsoft.Synapse/workspaces/notebooks",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"folder": {
+					"name": "Test"
+				},
+				"nbformat": 4,
+				"nbformat_minor": 2,
+				"bigDataPool": {
+					"referenceName": "Small33",
+					"type": "BigDataPoolReference"
+				},
+				"sessionProperties": {
+					"driverMemory": "56g",
+					"driverCores": 8,
+					"executorMemory": "56g",
+					"executorCores": 8,
+					"numExecutors": 1,
+					"runAsWorkspaceSystemIdentity": false,
+					"conf": {
+						"spark.dynamicAllocation.enabled": "true",
+						"spark.dynamicAllocation.minExecutors": "1",
+						"spark.dynamicAllocation.maxExecutors": "4",
+						"spark.autotune.trackingId": "ab591b83-cede-4a6c-a94d-97fb537f7a02"
+					}
+				},
+				"metadata": {
+					"saveOutput": true,
+					"enableDebugMode": false,
+					"kernelspec": {
+						"name": "synapse_pyspark",
+						"display_name": "python"
+					},
+					"language_info": {
+						"name": "python"
+					},
+					"a365ComputeOptions": {
+						"id": "/subscriptions/e62b14ef-8ad7-4fe1-b673-dbe6c34a50dc/resourceGroups/private-analytics/providers/Microsoft.Synapse/workspaces/privateanalytics/bigDataPools/Small33",
+						"name": "Small33",
+						"type": "Spark",
+						"endpoint": "https://privateanalytics.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/Small33",
+						"auth": {
+							"type": "AAD",
+							"authResource": "https://dev.azuresynapse.net"
+						},
+						"sparkVersion": "3.3",
+						"nodeCount": 10,
+						"cores": 8,
+						"memory": 56
+					},
+					"sessionKeepAliveTimeout": 30
+				},
+				"cells": [
+					{
+						"cell_type": "code",
+						"source": [
+							"from notebookutils.mssparkutils import azureML\n",
+							"\n",
+							"# getWorkspace() takes the linked service name,\n",
+							"# not the Azure Machine Learning workspace name.\n",
+							"ws = azureML.getWorkspace(\"aml_private_analytics\")\n",
+							"\n",
+							"print(ws.name)"
+						],
+						"outputs": [],
+						"execution_count": null
 					}
 				]
 			},
