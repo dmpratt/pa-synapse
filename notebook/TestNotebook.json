@@ -1,6 +1,9 @@
 {
-	"name": "Notebook 2",
+	"name": "TestNotebook",
 	"properties": {
+		"folder": {
+			"name": "Test"
+		},
 		"nbformat": 4,
 		"nbformat_minor": 2,
 		"bigDataPool": {
@@ -13,11 +16,12 @@
 			"executorMemory": "56g",
 			"executorCores": 8,
 			"numExecutors": 1,
+			"runAsWorkspaceSystemIdentity": false,
 			"conf": {
 				"spark.dynamicAllocation.enabled": "true",
 				"spark.dynamicAllocation.minExecutors": "1",
 				"spark.dynamicAllocation.maxExecutors": "4",
-				"spark.autotune.trackingId": "e63e7c02-65fd-4d67-be59-0ad964993324"
+				"spark.autotune.trackingId": "ab591b83-cede-4a6c-a94d-97fb537f7a02"
 			}
 		},
 		"metadata": {
@@ -25,7 +29,7 @@
 			"enableDebugMode": false,
 			"kernelspec": {
 				"name": "synapse_pyspark",
-				"display_name": "Synapse PySpark"
+				"display_name": "python"
 			},
 			"language_info": {
 				"name": "python"
@@ -50,28 +54,16 @@
 		"cells": [
 			{
 				"cell_type": "code",
-				"metadata": {
-					"jupyter": {
-						"source_hidden": false,
-						"outputs_hidden": false
-					},
-					"nteract": {
-						"transient": {
-							"deleting": false
-						}
-					}
-				},
 				"source": [
-					"%run \"/Test/TestNotebook\""
+					"from notebookutils.mssparkutils import azureML\n",
+					"\n",
+					"# getWorkspace() takes the linked service name,\n",
+					"# not the Azure Machine Learning workspace name.\n",
+					"ws = azureML.getWorkspace(\"aml_private_analytics\")\n",
+					"\n",
+					"print(ws.name)"
 				],
-				"execution_count": 1
-			},
-			{
-				"cell_type": "code",
-				"source": [
-					"print(f\"{ws.name} again\")"
-				],
-				"execution_count": 4
+				"execution_count": null
 			}
 		]
 	}
