@@ -1,0 +1,130 @@
+{
+	"name": "Saved Notebooks",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "9833640b-9a28-4cef-9edf-a181b61278a3"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "python"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"# No Attach\n",
+					"\n",
+					"from notebookutils.mssparkutils import azureML\n",
+					"\n",
+					"# getWorkspace() takes the linked service name,\n",
+					"# not the Azure Machine Learning workspace name.\n",
+					"ws = azureML.getWorkspace(\"aml_private_analytics\")\n",
+					"\n",
+					"print(ws.name)\n",
+					"\n",
+					""
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"%run \"/Test/TestNotebook\""
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"from notebookutils.mssparkutils import azureML\n",
+					"from azureml.core import Workspace, Model\n",
+					"import joblib\n",
+					"\n",
+					"# getWorkspace() takes the linked service name,\n",
+					"# not the Azure Machine Learning workspace name.\n",
+					"ws = azureML.getWorkspace(\"aml_private_analytics\")\n",
+					"#ws = Workspace.from_config()\n",
+					"print(ws.name)\n",
+					"model_name = \"LeadScore\"\n",
+					"\n",
+					"model_obj = Model(ws, model_name)\n",
+					"\n",
+					"for model in Model.list(ws):\n",
+					"    print(model.name, model.version)\n",
+					"\n",
+					"model_path = Model.get_model_path(model_name= \"LeadScore\", version=10, _workspace=ws)\n",
+					"print(model_path)\n",
+					"modelObj = joblib.load(f\"{model_path}/lead_score_000010.model\")\n",
+					""
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"from notebookutils.mssparkutils import azureML\n",
+					"\n",
+					"# getWorkspace() takes the linked service name,\n",
+					"# not the Azure Machine Learning workspace name.\n",
+					"ws = azureML.getWorkspace(\"aml_private_analytics\")\n",
+					"\n",
+					"print(ws.name)"
+				],
+				"execution_count": null
+			}
+		]
+	}
+}
